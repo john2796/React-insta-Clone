@@ -74,7 +74,9 @@ const LandingWrapper = styled.div`
     margin: 20px auto;
   }
   .right_info {
-    max-width: 380px;
+    min-width: 350px;
+    max-width: 350px;
+    border: 1px solid green;
   }
   .have_account {
     border: 1px solid #e6e6e6;
