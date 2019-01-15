@@ -1,6 +1,5 @@
 import data from "../../dummyData";
 import { TOGGLE_LIKES, ADD_COMMENT } from "../action/types";
-import uuid from "uuid";
 const initialState = {
   data
 };
