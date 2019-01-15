@@ -12,6 +12,7 @@ import phone4 from "../assets/phone4.jpg";
 import phone5 from "../assets/phone5.jpg";
 import getapp1 from "../assets/getapp01.png";
 import getapp2 from "../assets/getapp02.png";
+import sprite from "../assets/sprite.png";
 
 import Register from "./Register";
 
@@ -67,13 +68,35 @@ const LandingWrapper = styled.div`
   }
   .get_app_subtitle {
     color: #262626;
-    font-size: 13px;
+    font-size: 14px;
     text-align: center;
-    margin: 0 auto;
+
+    margin: 20px auto;
   }
   .right_info {
     max-width: 380px;
-    border: 1px solid red;
+  }
+  .have_account {
+    border: 1px solid #e6e6e6;
+    font-size: 15px;
+    padding: 20px 0 5px 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3b3b3b;
+    background: white;
+  }
+  .title_sprite {
+    background-repeat: no-repeat;
+    background-position: -98px -150px;
+    height: 51px;
+    width: 175px;
+    display: block;
+    overflow: hidden;
+    text-indent: 110%;
+    white-space: nowrap;
+    margin: 22px auto 12px;
   }
 `;
 
@@ -138,12 +161,23 @@ class Landing extends Component {
           <div className="right_info">
             {/* <Link to="/register">Register</Link> */}
             <div className="register">
+              <div
+                className="title_sprite"
+                style={{
+                  backgroundImage: `url(${sprite})`
+                }}
+              />
               <Register />
             </div>
-            <div>
-              Have an account ? <Link to="/login">Log In</Link>
+            <div className="have_account">
+              <p>
+                Have an account ?{" "}
+                <Link className="login_linke" to="/login">
+                  Log In
+                </Link>
+              </p>
             </div>
-            <span className="get_app_subtitle">Get the app</span>
+            <p className="get_app_subtitle">Get the app</p>
             <div className="get_app_parent">
               <img className="get_app" src={getapp1} alt="get app" />
               <img className="get_app" src={getapp2} alt="get app" />
