@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { loginUser } from "../store/action/authAction";
 import styled from "styled-components";
+import { FormGroup, Input, Button } from "reactstrap";
 
 import getapp1 from "../assets/getapp01.png";
 import getapp2 from "../assets/getapp02.png";
@@ -120,9 +121,34 @@ const LoginStyle = styled.div`
     }
   }
 
-  .login {
+  .loginContainer {
     background: white;
     border: 1px solid #e6e6e6;
+    min-width: 390px;
+    max-width: 390px;
+  }
+
+  .login_facebook {
+    text-align: center;
+    p {
+      margin: -11px 0;
+    }
+    i {
+      font-size: 19px;
+      color: #385185;
+    }
+    a {
+      font-size: 13px;
+      color: #21517c;
+      display: block;
+      padding: 10px 0 20px 0;
+    }
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #385285;
+      margin-left: 4px;
+    }
   }
 `;
 
@@ -166,16 +192,20 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <LoginStyle>
-        <div className="login">
+        <div className="loginContainer">
           <div
             className="title_sprite"
             style={{
               backgroundImage: `url(${sprite})`
             }}
           />
-          <form noValidate onSubmit={this.onSubmit}>
-            <div>
-              <input
+          <form
+            noValidate
+            onSubmit={this.onSubmit}
+            style={{ maxWidth: "290px", margin: "0 auto" }}
+          >
+            <FormGroup>
+              <Input
                 onChange={this.onChange}
                 value={this.state.email}
                 error={errors.email}
@@ -184,14 +214,15 @@ class Login extends Component {
                 className={classnames("", {
                   invalid: errors.email || errors.emailnotfound
                 })}
+                placeholder="Phone number or email"
               />
               <span className="red-text">
                 {errors.email}
                 {errors.emailnotfound}
               </span>
-            </div>
-            <div>
-              <input
+            </FormGroup>
+            <FormGroup>
+              <Input
                 onChange={this.onChange}
                 value={this.state.password}
                 error={errors.password}
@@ -200,19 +231,45 @@ class Login extends Component {
                 className={classnames("", {
                   invalid: errors.password || errors.passwordincorrect
                 })}
+                placeholder="Password"
               />
               <span className="red-text">
                 {errors.password}
                 {errors.passwordincorrect}
               </span>
-            </div>
+            </FormGroup>
             <div>
-              <button type="submit">Login</button>
+              <Button
+                disabled={!this.state.email || !this.state.password}
+                style={
+                  !this.state.email || !this.state.password
+                    ? { background: "#C8E1FB", border: "1px solid #C8E1FB" }
+                    : null
+                }
+                className="signup_btn"
+                color="primary"
+                type="submit"
+                size="lg"
+                block
+                type="submit"
+              >
+                Login
+              </Button>
             </div>
             <div className="parent_or">
               <div className="or or02">
                 <span className="color">OR</span>
               </div>
+            </div>
+            <div className="login_facebook">
+              <p>
+                <i className="fab fa-facebook" />
+                <span>Log in with Facebook</span>
+              </p>
+              <br />
+              <a href="https://www.instagram.com/accounts/password/reset/">
+                Forgot password?
+              </a>
             </div>
           </form>
         </div>
