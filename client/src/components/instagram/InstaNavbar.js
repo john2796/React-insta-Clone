@@ -48,7 +48,7 @@ class InstaNavbar extends Component {
     });
   }
   render() {
-    const { onLogoutClick } = this.props;
+    const { onLogoutClick, searchTerm, handleChange } = this.props;
 
     return (
       <NavbarStyle>
@@ -58,7 +58,12 @@ class InstaNavbar extends Component {
             <span style={{ paddingLeft: "15px" }}>Instagram</span>
           </NavbarBrand>
           <NavbarBrand className="ml-auto">
-            <Input placeholder="Search" />
+            <Input
+              placeholder="Search"
+              name="searchTerm"
+              value={searchTerm}
+              onChange={handleChange}
+            />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

@@ -48,7 +48,6 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
-
 // User Loading
 export const setUserLoading = () => {
   return {

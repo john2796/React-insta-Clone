@@ -46,6 +46,7 @@ class InstaCard extends Component {
 
   handleSubmit = (e, id) => {
     e.preventDefault();
+    if (!this.state.message) return;
     this.props.onAddHandler(id, this.state.message);
     this.setState({ message: "" });
   };
@@ -125,9 +126,9 @@ class InstaCard extends Component {
             >
               {isLiked ? likes + 1 : likes} likes
             </CardSubtitle>
-            {comments.map(comment => (
+            {comments.map((comment, index) => (
               <CardText
-                key={comment.id}
+                key={index}
                 style={{
                   margin: "6px 0"
                 }}
