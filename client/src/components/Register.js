@@ -6,7 +6,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import { FormGroup, Input, Button } from "reactstrap";
+import { FormGroup, Input, Button, Tooltip } from "reactstrap";
 
 const RegisterStyle = styled.div`
   background: white;
@@ -48,8 +48,10 @@ const RegisterStyle = styled.div`
   .parent_or {
     .or02 {
       text-align: center;
-      margin: 25px 0 35px 0;
+
       color: #999;
+      max-width: 290px;
+      margin: 30px auto;
       font-size: 13px;
       font-weight: 600;
       line-height: 15px;
@@ -65,13 +67,22 @@ const RegisterStyle = styled.div`
         width: 50%;
         height: 1px;
         content: "\a0";
-        background-color: red;
+        background-color: #efefef;
       }
       &:before {
         margin-left: -50%;
         text-align: right;
       }
+      .color {
+        background: white;
+        padding: 0 20px;
+      }
     }
+  }
+
+  .fab {
+    font-size: 18px;
+    margin: 0 4px;
   }
 `;
 
@@ -83,7 +94,8 @@ class Register extends Component {
       email: "",
       password: "",
       password2: "",
-      errors: {}
+      errors: {},
+      tooltipOpen: false
     };
   }
   componentDidMount() {
@@ -112,13 +124,42 @@ class Register extends Component {
     };
     this.props.registerUser(newUser, this.props.history);
   };
+  toggle = () => {
+    this.setState({
+      tooltipOpen: !this.state.tooltipOpen
+    });
+  };
 
   render() {
     const { errors } = this.state;
     return (
       <RegisterStyle>
+        <div className="login_fb">
+          <Button
+            className="signup_btn"
+            color="primary"
+            type="submit"
+            size="lg"
+            block
+            style={{ maxWidth: "290px", margin: "0 auto" }}
+            id="tooltipfb"
+          >
+            <i className="fab fa-facebook" /> Log in with Facebook
+          </Button>
+          <Tooltip
+            isOpen={this.state.tooltipOpen}
+            placement="top"
+            autohide={false}
+            target="tooltipfb"
+            toggle={this.toggle}
+          >
+            unavailable please use regular sign up
+          </Tooltip>
+        </div>
         <div className="parent_or">
-          <div className="or or02">OR</div>
+          <div className="or or02">
+            <span className="color">OR</span>
+          </div>
         </div>
         <form
           noValidate

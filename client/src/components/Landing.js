@@ -30,6 +30,11 @@ const LandingWrapper = styled.div`
     top: 0;
     left: 0;
   }
+  @media (max-width: 860px) {
+    .parent {
+      display: none;
+    }
+  }
   .image1 {
     position: relative;
     top: 0;
@@ -97,7 +102,7 @@ const LandingWrapper = styled.div`
     overflow: hidden;
     text-indent: 110%;
     white-space: nowrap;
-    margin: 22px auto 12px;
+    margin: 52px auto 22px;
   }
 `;
 
