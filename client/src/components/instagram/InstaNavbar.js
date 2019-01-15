@@ -48,6 +48,8 @@ class InstaNavbar extends Component {
     });
   }
   render() {
+    const { onLogoutClick } = this.props;
+
     return (
       <NavbarStyle>
         <Navbar color="light" light expand="md">
@@ -79,7 +81,7 @@ class InstaNavbar extends Component {
                   <DropdownItem>Option 1</DropdownItem>
                   <DropdownItem>Option 2</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
+                  <DropdownItem onClick={onLogoutClick}>Logout</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

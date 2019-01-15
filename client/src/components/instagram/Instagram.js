@@ -16,13 +16,13 @@ const InstagramStyle = styled.div`
 
 class Instagram extends Component {
   render() {
-    const { instagram } = this.props;
+    const { instagram, onLogoutClick } = this.props;
     const cardComponent = instagram.map((item, index) => (
       <InstaCard key={index} item={item} />
     ));
     return (
       <InstagramStyle>
-        <InstaNavbar />
+        <InstaNavbar onLogoutClick={onLogoutClick} />
         <Container className="wrapper">
           <Row style={{ marginTop: "50px" }}>
             <Col sm="8">{cardComponent}</Col>

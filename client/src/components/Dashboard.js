@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutUser } from "../../../store/actions/authActions";
-import Navigation from "../../../Container/Navigation/Navigation";
-import Main from "../../../Container/Main/Main";
+import { logoutUser } from "../store/action/authAction";
+import Instagram from "./instagram/Instagram";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -12,12 +11,11 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
-    const name = user.name.split(" ")[0];
+    // const { user } = this.props.auth;
+    // const name = user.name.split(" ")[0];
     return (
       <React.Fragment>
-        <Navigation onLogoutClick={this.onLogoutClick} name={name} />
-        <Main />
+        <Instagram onLogoutClick={this.onLogoutClick} />
       </React.Fragment>
     );
   }
