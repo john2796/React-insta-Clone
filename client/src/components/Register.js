@@ -2,10 +2,78 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../store/action/authAction";
-
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import styled from "styled-components";
+
+import { FormGroup, Input, Button } from "reactstrap";
+
+const RegisterStyle = styled.div`
+  background: white;
+
+  .red-text {
+    color: #f16974;
+    padding: 5px 0;
+    font-size: 13px;
+  }
+  input {
+    margin: -8px 0px;
+    background: #fafafa;
+    font-size: 12px;
+    border: 1px solid #efefef;
+  }
+
+  .signup_btn {
+    font-weight: bold;
+    font-size: 15px;
+    width: 100%;
+    margin: 20px 0;
+    box-sizing: border-box;
+    line-height: 1.2;
+    background-color: #3797f0;
+  }
+  .data_policy {
+    /* AEAEAE  bold*/
+    color: #9e9e9e;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 50px;
+    span {
+      color: #9c9c9c;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .parent_or {
+    .or02 {
+      text-align: center;
+      margin: 25px 0 35px 0;
+      color: #999;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 15px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      &:before,
+      &:after {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 50%;
+        height: 1px;
+        content: "\a0";
+        background-color: red;
+      }
+      &:before {
+        margin-left: -50%;
+        text-align: right;
+      }
+    }
+  }
+`;
 
 class Register extends Component {
   constructor() {
@@ -49,111 +117,94 @@ class Register extends Component {
     const { errors } = this.state;
     return (
       <RegisterStyle>
-        <div>
-          <Link to="/">
-            <i>keyboard_backspace</i> Back to home
-          </Link>
+        <div className="parent_or">
+          <div className="or or02">OR</div>
+        </div>
+        <form
+          noValidate
+          onSubmit={this.onSubmit}
+          style={{ maxWidth: "280px", margin: "0 auto" }}
+        >
+          <FormGroup>
+            <Input
+              onChange={this.onChange}
+              value={this.state.name}
+              error={errors.name}
+              id="name"
+              type="text"
+              className={classnames("", {
+                invalid: errors.name
+              })}
+              placeholder="Full Name"
+            />
+            <span className="red-text">{errors.name}</span>
+          </FormGroup>
+          <FormGroup>
+            <Input
+              onChange={this.onChange}
+              value={this.state.email}
+              error={errors.email}
+              id="email"
+              type="email"
+              className={classnames("", {
+                invalid: errors.email
+              })}
+              placeholder="Mobile Number or Email"
+            />
+            <span className="red-text">{errors.email}</span>
+          </FormGroup>
+          <FormGroup>
+            <Input
+              onChange={this.onChange}
+              value={this.state.password}
+              error={errors.password}
+              id="password"
+              type="password"
+              className={classnames("", {
+                invalid: errors.password
+              })}
+              placeholder="Password"
+            />
+            <span className="red-text">{errors.password}</span>
+          </FormGroup>
+          <FormGroup>
+            <Input
+              onChange={this.onChange}
+              value={this.state.password2}
+              error={errors.password2}
+              id="password2"
+              type="password"
+              className={classnames("", {
+                invalid: errors.password2
+              })}
+              placeholder="Password2"
+            />
+            <span className="red-text">{errors.password2}</span>
+          </FormGroup>
           <div>
-            <h4>
-              <b>Register</b> below
-            </h4>
-            <p>
-              Already have an account? <Link to="/login">Log in</Link>
+            <Button
+              className="signup_btn"
+              color="primary"
+              type="submit"
+              size="lg"
+              block
+            >
+              Sign up
+            </Button>
+            <p className="data_policy">
+              By signing up, you agree to our <br />
+              <span> Terms, Data Policy </span> and
+              <span>
+                Cookies <br /> Policy
+              </span>
+              .
             </p>
           </div>
-          <form noValidate onSubmit={this.onSubmit} className="register_form">
-            <div>
-              <input
-                onChange={this.onChange}
-                value={this.state.email}
-                error={errors.email}
-                id="email"
-                type="email"
-                className={classnames("", {
-                  invalid: errors.email
-                })}
-                placeholder="Email"
-              />
-              <span>{errors.email}</span>
-            </div>
-            <div>
-              <input
-                onChange={this.onChange}
-                value={this.state.name}
-                error={errors.name}
-                id="name"
-                type="text"
-                className={classnames("", {
-                  invalid: errors.name
-                })}
-                placeholder="Full Name"
-              />
-              <span>{errors.name}</span>
-            </div>
-            <div>
-              <input
-                onChange={this.onChange}
-                value={this.state.password}
-                error={errors.password}
-                id="password"
-                type="password"
-                className={classnames("", {
-                  invalid: errors.password
-                })}
-                placeholder="Password"
-              />
-              <span>{errors.password}</span>
-            </div>
-            <div>
-              <input
-                onChange={this.onChange}
-                value={this.state.password2}
-                error={errors.password2}
-                id="password2"
-                type="password"
-                className={classnames("", {
-                  invalid: errors.password2
-                })}
-                placeholder="Password2"
-              />
-              <span>{errors.password2}</span>
-            </div>
-            <div>
-              <button type="submit">Sign up</button>
-              <p>
-                By signing up, you agree to our Terms, Data Policy and Cookies
-                Policy.
-              </p>
-            </div>
-          </form>
-        </div>
+        </form>
       </RegisterStyle>
     );
   }
 }
-
-const RegisterStyle = styled.div`
-  border: 1px solid red;
-  max-width: 280px;
-  margin: 0 auto;
-
-  .register_form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  input {
-    width: 100;
-    flex: 1;
-    font-size: 2rem;
-    margin: 0 10px;
-    min-width: 0;
-    width: 87%;
-    flex: 1;
-  }
-`;
-
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,

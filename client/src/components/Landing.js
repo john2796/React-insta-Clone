@@ -74,9 +74,8 @@ const LandingWrapper = styled.div`
     margin: 20px auto;
   }
   .right_info {
-    min-width: 350px;
-    max-width: 350px;
-    border: 1px solid green;
+    min-width: 390px;
+    max-width: 390px;
   }
   .have_account {
     border: 1px solid #e6e6e6;
@@ -162,7 +161,7 @@ class Landing extends Component {
           </div>
           <div className="right_info">
             {/* <Link to="/register">Register</Link> */}
-            <div className="register">
+            <div className="register" style={{ background: "white" }}>
               <div
                 className="title_sprite"
                 style={{
