@@ -6,7 +6,125 @@ import classnames from "classnames";
 import { loginUser } from "../store/action/authAction";
 import styled from "styled-components";
 
-const LoginStyle = styled.div``;
+import getapp1 from "../assets/getapp01.png";
+import getapp2 from "../assets/getapp02.png";
+import sprite from "../assets/sprite.png";
+
+const LoginStyle = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: #fafafa;
+
+  .get_app {
+    width: 140px;
+  }
+  .have_account {
+    border: 1px solid #e6e6e6;
+    font-size: 15px;
+    padding: 20px 0 5px 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3b3b3b;
+    background: white;
+    min-width: 390px;
+    max-width: 390px;
+  }
+  .get_app_parent {
+    margin: 0 auto;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .get_app {
+      margin-right: 10px;
+    }
+  }
+  .get_app_subtitle {
+    color: #262626;
+    font-size: 14px;
+    text-align: center;
+
+    margin: 20px auto;
+  }
+  .title_sprite {
+    background-repeat: no-repeat;
+    background-position: -98px -150px;
+    height: 51px;
+    width: 175px;
+    display: block;
+    overflow: hidden;
+    text-indent: 110%;
+    white-space: nowrap;
+    margin: 52px auto 22px;
+  }
+
+  .red-text {
+    color: #f16974;
+    padding: 5px 0;
+    font-size: 13px;
+  }
+  input {
+    margin: -8px 0px;
+    background: #fafafa;
+    font-size: 12px;
+    border: 1px solid #efefef;
+  }
+
+  .signup_btn {
+    font-weight: bold;
+    font-size: 15px;
+    width: 100%;
+    margin: 20px 0;
+    box-sizing: border-box;
+    line-height: 1.2;
+    background-color: #3797f0;
+  }
+
+  .parent_or {
+    .or02 {
+      text-align: center;
+
+      color: #999;
+      max-width: 290px;
+      margin: 30px auto;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 15px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      &:before,
+      &:after {
+        position: absolute;
+        top: 26%;
+        overflow: hidden;
+        width: 50%;
+        height: 1px;
+        content: "\a0";
+        background-color: #efefef;
+      }
+      &:before {
+        margin-left: -50%;
+        text-align: right;
+      }
+      .color {
+        background: white;
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .login {
+    background: white;
+    border: 1px solid #e6e6e6;
+  }
+`;
 
 class Login extends Component {
   constructor() {
@@ -48,12 +166,13 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <LoginStyle>
-        <div style={{ marginTop: "4rem" }} className="row">
-          <div>
-            <p>
-              Don't have an account? <Link to="/register">Register</Link>
-            </p>
-          </div>
+        <div className="login">
+          <div
+            className="title_sprite"
+            style={{
+              backgroundImage: `url(${sprite})`
+            }}
+          />
           <form noValidate onSubmit={this.onSubmit}>
             <div>
               <input
@@ -90,7 +209,26 @@ class Login extends Component {
             <div>
               <button type="submit">Login</button>
             </div>
+            <div className="parent_or">
+              <div className="or or02">
+                <span className="color">OR</span>
+              </div>
+            </div>
           </form>
+        </div>
+
+        <div className="have_account">
+          <p>
+            Don't have an account?
+            <Link className="login_linke" style={{ marginLeft: 4 }} to="/">
+              Sign up
+            </Link>
+          </p>
+        </div>
+        <p className="get_app_subtitle">Get the app</p>
+        <div className="get_app_parent">
+          <img className="get_app" src={getapp1} alt="get app" />
+          <img className="get_app" src={getapp2} alt="get app" />
         </div>
       </LoginStyle>
     );

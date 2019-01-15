@@ -4,7 +4,6 @@ import jwt_decode from "jwt-decode";
 
 import setAuthToken from "../utils/setAuthToken";
 import Landing from "../components/Landing";
-import Register from "../components/Register";
 import Login from "../components/Login";
 import Dashboard from "../components/Dashboard";
 import PrivateRoute from "../components/PrivateRoute";
@@ -36,7 +35,6 @@ class LoginContainer extends Component {
       <Router>
         <div className="LoginContainer">
           <Route exact path="/" component={Landing} />
-          <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />

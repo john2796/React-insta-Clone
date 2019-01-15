@@ -128,7 +128,7 @@ class Landing extends Component {
     if (this._isMounted) {
       this.interval = window.setInterval(() => {
         this.next();
-      }, 5500);
+      }, 4500);
     }
   };
 
@@ -177,8 +177,12 @@ class Landing extends Component {
             </div>
             <div className="have_account">
               <p>
-                Have an account ?{" "}
-                <Link className="login_linke" to="/login">
+                Have an account ?
+                <Link
+                  className="login_linke"
+                  to="/login"
+                  style={{ marginLeft: 4 }}
+                >
                   Log In
                 </Link>
               </p>
