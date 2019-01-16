@@ -14,9 +14,4 @@ export const onToggleLikesHandler = (id, data) => {
   };
 };
 
-export const onAddHandler = newItem => {
-  return {
-    type: ADD_COMMENT,
-    newItem
-  };
-};
+export const onAddHandler = newItem => ({ type: ADD_COMMENT, newItem });

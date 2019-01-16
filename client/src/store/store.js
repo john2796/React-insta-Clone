@@ -2,9 +2,9 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducer/index";
 import { loadState, saveState } from "../localStorage/index";
-const middleware = [thunk];
 import throttle from "lodash/throttle";
 
+const middleware = [thunk];
 const persistedState = loadState();
 
 const store = createStore(
