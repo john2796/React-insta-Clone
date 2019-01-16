@@ -14,11 +14,9 @@ export const onToggleLikesHandler = (id, data) => {
   };
 };
 
-export const onAddHandler = (id, newText, userName) => {
+export const onAddHandler = newItem => {
   return {
     type: ADD_COMMENT,
-    id,
-    newText,
-    userName
+    newItem
   };
 };

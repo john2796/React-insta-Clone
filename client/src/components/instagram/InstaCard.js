@@ -46,14 +46,23 @@ class InstaCard extends Component {
 
   handleSubmit = (e, id) => {
     e.preventDefault();
+    const { data } = this.props.instagram;
     if (!this.state.message) return;
-    this.props.onAddHandler(id, this.state.message);
+    const newItem = data.map(post => {
+      if (post.id === id) {
+        post.comments.push({
+          text: this.state.message,
+          username: post.username
+        });
+      }
+      return post;
+    });
+    this.props.onAddHandler(newItem);
     this.setState({ message: "" });
   };
 
   likeHanlder = id => {
     const { data } = this.props.instagram;
-    console.log(data);
     this.props.onToggleLikesHandler(id, data);
   };
 

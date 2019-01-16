@@ -184,7 +184,6 @@ const LoginStyle = styled.div`
     }
   }
 `;
-
 const images = [
   { src: phone1 },
   { src: phone2 },
@@ -192,6 +191,7 @@ const images = [
   { src: phone4 },
   { src: phone5 }
 ];
+
 class Login extends Component {
   _isMounted = false;
   constructor() {
@@ -277,6 +277,7 @@ class Login extends Component {
                 backgroundImage: `url(${sprite})`
               }}
             />
+
             <form
               noValidate
               onSubmit={this.onSubmit}
