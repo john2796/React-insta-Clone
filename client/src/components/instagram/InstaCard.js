@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { connect } from "react-redux";
+
 import {
-  onToggleLikesHandler,
-  onAddHandler
+  onToggleLikesHandler
+  // onAddHandler
 } from "../../store/action/instaAction";
+import { getInstaComments } from "../../store/action/instaCommentAction";
 
 import {
   Card,
@@ -38,29 +40,33 @@ class InstaCard extends Component {
   state = {
     message: ""
   };
+
+  componentDidMount() {
+    this.props.getInstaComments();
+  }
+
+  handleSubmit = (e, id) => {
+    e.preventDefault();
+    this.setState({ message: "" });
+    // const { data } = this.props.instagram;
+    // if (!this.state.message) return;
+    // const newItem = data.map(post => {
+    //   if (post.id === id) {
+    //     post.comments.push({
+    //       text: this.state.message,
+    //       username: post.username
+    //     });
+    //   }
+    //   return post;
+    // });
+    // this.props.onAddHandler(newItem);
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-
-  handleSubmit = (e, id) => {
-    e.preventDefault();
-    const { data } = this.props.instagram;
-    if (!this.state.message) return;
-    const newItem = data.map(post => {
-      if (post.id === id) {
-        post.comments.push({
-          text: this.state.message,
-          username: post.username
-        });
-      }
-      return post;
-    });
-    this.props.onAddHandler(newItem);
-    this.setState({ message: "" });
-  };
-
   likeHanlder = id => {
     const { data } = this.props.instagram;
     this.props.onToggleLikesHandler(id, data);
@@ -77,7 +83,8 @@ class InstaCard extends Component {
         comments,
         id,
         isLiked
-      }
+      },
+      instacomments
     } = this.props;
 
     return (
@@ -135,15 +142,15 @@ class InstaCard extends Component {
             >
               {isLiked ? likes + 1 : likes} likes
             </CardSubtitle>
-            {comments.map((comment, index) => (
+            {instacomments.map(comment => (
               <CardText
-                key={index}
+                key={comment._id}
                 style={{
                   margin: "6px 0"
                 }}
               >
                 <span style={{ fontWeight: "bold", marginRight: 5 }}>
-                  {comment.username}
+                  {this.props.user.name}
                 </span>
                 <span>{comment.text}</span>
               </CardText>
@@ -193,10 +200,16 @@ InstaCard.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  instagram: state.instagram
+  instagram: state.instagram,
+  instacomments: state.insta.comments,
+  user: state.auth.user
 });
 
 export default connect(
   mapStateToProps,
-  { onToggleLikesHandler, onAddHandler }
+  {
+    onToggleLikesHandler,
+    //  onAddHandler
+    getInstaComments
+  }
 )(InstaCard);
