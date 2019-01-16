@@ -6,6 +6,7 @@ const morgan = require("morgan");
 
 const app = express();
 const users = require("./routes/api/users");
+const insta = require("./routes/api/insta");
 
 //middleware
 app.use(morgan());
@@ -25,6 +26,7 @@ mongoose
 
 //connect routes
 app.use("/api/users", users);
+app.use("/api/insta", insta);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`server running on port ${port}`));
