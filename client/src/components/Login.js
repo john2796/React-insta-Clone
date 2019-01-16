@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { loginUser } from "../store/action/authAction";
+import { loginUser, setCurrentUser } from "../store/action/authAction";
 import styled from "styled-components";
 import { FormGroup, Input, Button } from "reactstrap";
 
@@ -381,5 +381,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { loginUser }
+  { loginUser, setCurrentUser }
 )(Login);

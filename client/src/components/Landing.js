@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // import { Container, Row, Col } from "reactstrap";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 //images
 import mainPhone from "../assets/mainphone.png";
@@ -124,6 +125,8 @@ class Landing extends Component {
   }
 
   componentDidMount = () => {
+    console.log(this.props.auth);
+
     this._isMounted = true;
     if (this._isMounted) {
       this.interval = window.setInterval(() => {
@@ -199,4 +202,8 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(Landing);

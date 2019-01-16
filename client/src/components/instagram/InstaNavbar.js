@@ -49,7 +49,6 @@ class InstaNavbar extends Component {
   }
   render() {
     const { onLogoutClick, searchTerm, handleChange } = this.props;
-
     return (
       <NavbarStyle>
         <Navbar color="light" light expand="md">

@@ -28,14 +28,19 @@ class Instagram extends Component {
   render() {
     const { instagram, onLogoutClick } = this.props;
     const { searchTerm } = this.state;
-
     const filterDummyData = instagram.filter(ig => {
       return ig.username.indexOf(this.state.searchTerm) !== -1;
     });
-
-    const cardComponent = filterDummyData.map((item, index) => (
-      <InstaCard key={index} item={item} />
-    ));
+    const cardComponent = !filterDummyData.length ? (
+      <img
+        src="https://media.giphy.com/media/fMZU6xl2OHgHe/200.gif"
+        alt="no match"
+      />
+    ) : (
+      filterDummyData.map((item, index) => (
+        <InstaCard key={index} item={item} />
+      ))
+    );
     return (
       <InstagramStyle>
         <InstaNavbar
