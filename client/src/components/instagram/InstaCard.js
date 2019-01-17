@@ -147,7 +147,12 @@ class InstaCard extends Component {
             <div>
               {comments.map((dummyComment, index) => (
                 <div key={index}>
-                  <span style={{ fontWeight: "bold", marginRight: 5 }}>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      marginRight: 5
+                    }}
+                  >
                     {dummyComment.username}
                   </span>
                   <span>{dummyComment.text}</span>

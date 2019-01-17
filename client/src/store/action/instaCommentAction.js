@@ -34,10 +34,10 @@ export const addInstaComments = (text, data) => dispatch => {
     type: ADD_COMMENT,
     newComments
   });
-  axios
-    .post(URL, { text })
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err));
+  // axios
+  //   .post(URL, { text })
+  //   .then(res => console.log(res.data))
+  //   .catch(err => console.log(err));
 };
 
 // export const getErrors = () => {
