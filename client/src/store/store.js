@@ -20,6 +20,7 @@ store.subscribe(
   throttle(() => {
     //use throttle so it only update localstorage every 1000ms for performance issue because subsricbe setState is call all the time ensure doesn't get called evey 1000 ms
     saveState({
+      insta: store.getState().insta,
       instagram: store.getState().instagram
     });
   }, 1000)

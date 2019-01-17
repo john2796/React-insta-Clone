@@ -18,6 +18,11 @@ export default function instaCommentReducer(state = initialState, action) {
         comments: action.comments,
         errors: action.err
       };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        comments: action.newComments
+      };
     default:
       return state;
   }

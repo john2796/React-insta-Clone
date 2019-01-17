@@ -8,7 +8,7 @@ const Insta = require("../../models/Insta");
 // @desc    get users
 // @access  Public
 //http://localhost:5000/api/insta
-router.get("/", (req, res) => {
+router.get("/comments", (req, res) => {
   Insta.find((err, data) => {
     if (err) res.json({ success: false, error: err });
     return res.json({ success: true, comments: data });

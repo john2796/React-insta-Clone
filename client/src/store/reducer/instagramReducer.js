@@ -1,5 +1,5 @@
 import data from "../../dummyData";
-import { TOGGLE_LIKES, ADD_COMMENT } from "../action/types";
+import { TOGGLE_LIKES } from "../action/types";
 const initialState = {
   data
 };
@@ -10,11 +10,6 @@ export default function instagramReducer(state = initialState, action) {
       return {
         ...state,
         data: action.newData
-      };
-    case ADD_COMMENT:
-      return {
-        ...state,
-        data: action.newItem
       };
     default:
       return state;

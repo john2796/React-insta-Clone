@@ -2,17 +2,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const morgan = require("morgan");
+const logger = require("morgan");
 
 const app = express();
 const users = require("./routes/api/users");
 const insta = require("./routes/api/insta");
 
 //middleware
-app.use(morgan());
 app.use(cors("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(logger());
 
 //connect mongo
 const db = require("./config/keys").mongoURI;

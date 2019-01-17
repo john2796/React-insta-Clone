@@ -28,6 +28,7 @@ class Instagram extends Component {
   render() {
     const { instagram, onLogoutClick } = this.props;
     const { searchTerm } = this.state;
+
     const filterDummyData = instagram.filter(ig => {
       return ig.username.indexOf(this.state.searchTerm) !== -1;
     });
@@ -41,6 +42,7 @@ class Instagram extends Component {
         <InstaCard key={index} item={item} />
       ))
     );
+
     return (
       <InstagramStyle>
         <InstaNavbar
