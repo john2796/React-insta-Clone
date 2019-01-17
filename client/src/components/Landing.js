@@ -125,8 +125,6 @@ class Landing extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props.auth);
-
     this._isMounted = true;
     if (this._isMounted) {
       this.interval = window.setInterval(() => {
