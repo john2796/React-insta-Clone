@@ -82,8 +82,6 @@ class InstaNavbar extends Component {
                   <i className="far fa-user" />
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={onLogoutClick}>Logout</DropdownItem>
                 </DropdownMenu>

@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 
 // model
 const Insta = require("../../models/Insta");
-
+const validateInstaProfileInput = require("../../validation/validateInstaProfileInput");
 // @route   GET api/commentbox/comments
 // @desc    get users
 // @access  Public
 //http://localhost:5000/api/insta
-router.get("/comments", (req, res) => {
+router.get("/", (req, res) => {
   Insta.find((err, data) => {
     if (err) res.json({ success: false, error: err });
     return res.json({ success: true, comments: data });
@@ -19,21 +20,43 @@ router.get("/comments", (req, res) => {
 // @desc    Post comments
 // @access  Public
 //http://localhost:5000/api/insta
-router.post("/comments", (req, res) => {
-  const comment = new Insta();
-  const { text } = req.body;
-  if (!text) {
-    return res.json({
-      success: false,
-      error: "you must provide an comment"
-    });
-  }
-  comment.text = text;
-  comment.save(err => {
-    if (err) return res.status(400).json({ success: false, error: err });
-    return res.json({ success: true });
+router.post("/", (req, res) => {
+  const profileFields = {};
+  const errors = {};
+
+  profileFields.user = req.user.id;
+  if (req.body.isLiked) profileFields.isLiked = req.body.isLiked;
+  if (req.body.username) profileFields.username = req.body.username;
+  if (req.body.thumbnailUrl) profileFields.thumbnailUrl = req.body.thumbnailUrl;
+  if (req.body.imageUrl) profileFields.imageUrl = req.body.imageUrl;
+  if (req.body.likes) profileFields.likes = req.body.likes;
+
+  Insta.findOne({ user: req.user.id }, profile => {
+    if (profile) {
+      errors.username = "The username already exists";
+      res.status(400).json(errors);
+    }
+    new Insta(profileFields).save().then(profile => res.json(profile));
   });
 });
+
+// let { text } = req.body;
+// if (!text) {
+//   return res.json({
+//     success: false,
+//     error: "you must provide an comment"
+//   });
+// }
+// profileFields.text = text;
+// new Insta(profileFields).save(err => {
+//   if (err) return res.status(400).json({ success: false, error: err });
+//   return res.json({ success: true });
+// });
+
+// @route   POST api/insta/comments
+// @desc    Add comments
+// @access  Public
+router.post("/comments", (req, res) => {});
 
 // @route   POST api/insta
 // @desc    Update comments

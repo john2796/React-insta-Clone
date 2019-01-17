@@ -3,9 +3,28 @@ const Schema = mongoose.Schema;
 
 const InstaDataSchema = new Schema(
   {
-    text: {
+    isLiked: {
+      type: Boolean
+    },
+    username: {
       type: String
-    }
+    },
+    thumbnailUrl: {
+      type: String
+    },
+    imageUrl: {
+      type: String
+    },
+    likes: {
+      Type: Number
+    },
+    comments: [
+      {
+        text: {
+          type: String
+        }
+      }
+    ]
   },
   { timestamps: true }
 );
