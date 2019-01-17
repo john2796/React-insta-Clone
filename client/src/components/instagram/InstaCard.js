@@ -143,6 +143,17 @@ class InstaCard extends Component {
             >
               {isLiked ? likes + 1 : likes} likes
             </CardSubtitle>
+
+            <div>
+              {comments.map((dummyComment, index) => (
+                <div key={index}>
+                  <span style={{ fontWeight: "bold", marginRight: 5 }}>
+                    {dummyComment.username}
+                  </span>
+                  <span>{dummyComment.text}</span>
+                </div>
+              ))}
+            </div>
             {instacomments.map(comment => (
               <CardText
                 key={comment._id}
@@ -156,6 +167,7 @@ class InstaCard extends Component {
                 <span>{comment.text}</span>
               </CardText>
             ))}
+
             <span
               style={{
                 fontSize: 12,
